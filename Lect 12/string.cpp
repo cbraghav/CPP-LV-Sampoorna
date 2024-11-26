@@ -5,7 +5,7 @@ int main()
 
 {
 
-    string s = "coding blocks";
+    string s = "coding blocks 10";
 
     cout << s << endl;
     cout << s[0] << endl;
