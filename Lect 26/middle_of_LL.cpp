@@ -43,7 +43,7 @@ void traverse(Node *head)
     while (i != NULL)
     {
         cout << i->data << " ";
-        i = i->next; //i++ -> i= i+1
+        i = i->next; // i++ -> i= i+1
     }
     cout << endl;
 }
@@ -221,22 +221,62 @@ void search(Node *head, int val)
     }
     cout << endl;
 }
+
+// Tc -> O(N + N/2)
+void MiddleOfLL_BF(Node *head)
+{
+    int len = 0;
+    Node *curr = head;
+
+    while (curr != NULL)
+    {
+        len++;
+        curr = curr->next;
+    }
+
+    cout << "length of LL is " << len << endl;
+
+    int mid = (len / 2) + 1;
+
+    int cnt = 0;
+    curr = head;
+
+    while (curr != NULL)
+    {
+        cnt++;
+        if (cnt == mid)
+        {
+            cout << "middle element is " << curr->data << endl;
+        }
+        curr = curr->next;
+    }
+}
+
+// O(N/2)
+void MiddleOfLL_TAH(Node *head)
+{
+    Node *slow = head;
+    Node *fast = head;
+
+    while (fast != NULL and fast->next != NULL)
+    {
+        slow = slow->next;
+        if (fast->next != NULL)
+            fast = fast->next->next;
+    }
+    cout << " middle is" << slow->data;
+    return;
+}
 int main()
 {
 
-    // Node *y = new Node(5);
-    // cout << y->data << endl;
-    // cout << y << endl;
+    Node *head = insertatBegin(NULL, 11);
+    head = insertAtEnd(head, 12);
+    head = insertAtEnd(head, 13);
+    // head = insertAtEnd(head, 14);
 
-    Node *head = insertAtEnd(NULL, 10);
-    head = insertatBegin(head, 7);
-    head = insertAtEnd(head, 8);
-    head = insertAtEnd(head, 55);
+    traverse(head);
 
-    head = insertAfterData(head, 49, 10);
-    traverse(head);
-    head = deleteFromEnd(head);
-    head = deleteFromEnd(head);
-    head = deleteFromEnd(head);
-    traverse(head);
+    MiddleOfLL_BF(head);
+    MiddleOfLL_TAH(head);
 }
