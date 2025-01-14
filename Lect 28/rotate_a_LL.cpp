@@ -122,7 +122,7 @@ Node *rotate_LL(Node *head, int k)
     }
 
     prev->next = NULL;
-    return curr;
+    return curr; // curr becomes new head
 }
 int main()
 {
