@@ -211,7 +211,7 @@ int main()
     // cout << endl;
     // PostorderTraversal(root);
     // cout << endl;
-    // levelOrderTraversal(root);
+    levelOrderTraversal(root);
     cout << findDepth_usingDFS(root) << endl;
     int ans = 0;
 
