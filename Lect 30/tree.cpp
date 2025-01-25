@@ -366,6 +366,26 @@ void RightViewDFS(Node *curr, int level, map<int, int> &ans) // map<int,int>  le
 
     RightViewDFS(curr->left, level + 1, ans);
 }
+
+Node *deleteLeaf(Node *root)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+    // leaf node h
+    if (root->left == NULL and root->right == NULL)
+    {
+        delete root;
+        return NULL;
+    }
+
+    // leaf node nahi h
+    root->left = deleteLeaf(root->left);
+    root->right = deleteLeaf(root->right);
+    return root;
+}
+
 int main()
 {
 
@@ -380,26 +400,26 @@ int main()
     root->right->left = new Node(6);
     root->right->right = new Node(7);
     root->right->right->right = new Node(9);
-    int count = 0;
+    // int count = 0;
     // PreorderTraversal(root, count);
 
-    // cout << endl;
-    // cout << "total numebr of elements are : " << count << endl;
+    // // cout << endl;
+    // // cout << "total numebr of elements are : " << count << endl;
 
-    // cout << "are trees identical: " << isIdenticalBTs(NULL, NULL) << endl;
+    // // cout << "are trees identical: " << isIdenticalBTs(NULL, NULL) << endl;
 
-    // LeftViewBT(root);
-    // cout << endl;
-    // RightViewBT(root);
-    ;
+    // // LeftViewBT(root);
+    // // cout << endl;
+    // // RightViewBT(root);
+    // ;
 
-    map<int, int> ans;
-    int level = 0;
+    // map<int, int> ans;
+    // int level = 0;
 
-    RightViewDFS(root, level, ans);
+    // RightViewDFS(root, level, ans);
 
-    for (auto i : ans)
-    {
-        cout << "level " << i.first << " data" << i.second << endl;
-    }
+    // for (auto i : ans)
+    // {
+    //     cout << "level " << i.first << " data" << i.second << endl;
+    // }
 }

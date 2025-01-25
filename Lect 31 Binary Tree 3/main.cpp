@@ -254,21 +254,43 @@ int diameterofBT(Node *root, int &ans)
     return max(lh, rh) + 1;
 }
 
+Node *deleteLeaf(Node *root)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+    // leaf node h
+    if (root->left == NULL and root->right == NULL)
+    {
+        delete root;
+        return NULL;
+    }
+
+    // leaf node nahi h
+    root->left = deleteLeaf(root->left);
+    root->right = deleteLeaf(root->right);
+    return root;
+}
 int main()
 {
 
     int n;
-    cin >> n;
-    vector<int> arr; // { 0 , -1 , 2 ,-1 }
+    // cin >> n;
 
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        arr.push_back(x);
-    }
+    vector<int> arr = {0, 1, 2, -1, 4, 5, 6, -1, -1, -1, 9};
+    n = arr.size();
+    // for (int i = 0; i < n; i++)
+    // {
+    //     int x;
+    //     cin >> x;
+    //     arr.push_back(x);
+    // }
     Node *root = treeconstruct(n, arr, 0);
 
     levelOrderTraversal(root);
-    PreorderTraversal(root);
+
+    root = deleteLeaf(root);
+    levelOrderTraversal(root);
+    // PreorderTraversal(root);
 }
